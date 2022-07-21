@@ -8,6 +8,6 @@ class StaticController < ApplicationController
     @random_advise = advise_client.get_random_advise
 
     country_client = Country::Api::Client.new
-    @countries = client.get_all_countries.sort_by{|c| c['continents']}
+    @countries = country_client.get_all_countries.sort_by{|c| c['continents']}
   end
 end
