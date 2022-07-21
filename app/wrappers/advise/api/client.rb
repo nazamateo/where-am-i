@@ -2,7 +2,6 @@ module Advise
 	module Api
     	class Client
             BASE_URL = 'https://api.adviceslip.com'.freeze
-            #https://api.adviceslip.com/
            
             def get_random_advise
                 send_request(:get, 'advice')

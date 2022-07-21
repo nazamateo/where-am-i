@@ -2,7 +2,6 @@ module Country
 	module Api
     	class Client
             BASE_URL = 'https://restcountries.com/v3.1'.freeze
-            #https://restcountries.com/#api-endpoints-v3-full-name
            
             def get_all_countries
                 send_request(:get, 'all')

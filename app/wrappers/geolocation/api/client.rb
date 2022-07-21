@@ -2,7 +2,6 @@ module Geolocation
 	module Api
     	class Client
             BASE_URL = 'http://api.ipstack.com/'.freeze
-            #https://ipstack.com/quickstart
 
             def get_location
                 send_request(:get, "check", :access_key => '126dc8a499f871199fd9cd50aeb3aa8a')
