@@ -1,2 +1,24 @@
 <h1 class="text-3xl font-bold underline text-red-500">Static#home</h1>
 <p>Find me in app/views/static/home.html.erb</p>
+<div>
+  <h1 class="text-green-500 font-bold text-4xl">Covid#index</h1>
+  <p>Find me in app/views/covid/index.html.erb</p>
+  <h1>Hello stranger! <%=@random_advise['slip']['advice'].capitalize%></h1>
+  <h1>User IP <%=@location['ip']%></h1>
+  <h1>User Continent <%=@location['continent_name']%></h1>
+  <h1>User Country <%=@location['country_name']%></h1>
+  <h1>User Region <%=@location['region_name']%></h1>
+  <h1>User City <%=@location['city']%></h1>
+  <h1>User Zipcode <%=@location['zip']%></h1>
+  <%@countries.each do |c|%>
+    <h3>Continent: <%=c['continents'][0]%></h3>
+    <div class="max-w-sm rounded-lg border shadow-md bg-gray-800 border-gray-700">
+      <img class="rounded-t-lg" src='<%=c['flags']['svg']%>'/>
+      <div class="p-5">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+          <%= link_to c['name']['common'], covid_path(c['name']['common']) %>
+        </h5>
+      </div>
+    </div>
+  <%end%>
+</div>
