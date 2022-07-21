@@ -17,7 +17,6 @@ class StaticController < ApplicationController
 
     country_client = Country::Api::Client.new
     @country = country_client.get_country_details(params[:country].gsub(/\s+/, '%20'))
-
   end
 
 end

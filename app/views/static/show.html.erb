@@ -1,0 +1,28 @@
+<div>
+  <h1 class="text-green-500 font-bold text-4xl">Covid#show</h1>
+  <p>Find me in app/views/covid/show.html.erb</p>
+  <%@country.each do |c|%>
+    <h2><%=c['name']['official']%></h2>
+    <h3>Population: <%=c['population']%></h3>
+    <h3>Capital: <%=c['capital'][0]%></h3>
+    <h3>Area: <%=c['area']%></h3>
+    <h3>Continent: <%=c['continents'][0]%></h3>
+    <h3><%= link_to 'Map', c['maps']['googleMaps'], target: :_blank %></h3>
+    <div class="max-w-sm rounded-lg border shadow-md bg-gray-800 border-gray-700">
+      <img class="rounded-t-lg" src='<%=c['flags']['svg']%>'/>
+      <img class="rounded-t-lg" src='<%=c['coatOfArms']['svg']%>'/>
+    </div>
+  <%end%>
+  <% if @covid_data.empty? %>
+    <h1>Sorry! Currently there is no available data from the API.</h1>
+  <%else%>
+    <h2>Covid Data</h2>
+    <h2><%= @covid_data[-1]['Date'].chomp("T00:00:00Z")%></h2>
+    <ul>
+      <li>Confirmed: <%= @covid_data[-1]['Confirmed']%></li>
+      <li>Deaths: <%= @covid_data[-1]['Deaths']%></li>
+      <li>Recovered: <%= @covid_data[-1]['Recovered']%></li>
+      <li>Active: <%= @covid_data[-1]['Active']%></li>
+    </ul>
+  <%end%>
+</div>
