@@ -10,4 +10,8 @@ class StaticController < ApplicationController
     country_client = Country::Api::Client.new
     @countries = country_client.get_all_countries.sort_by{|c| c['continents']}
   end
+
+  def show
+  end
+  
 end
