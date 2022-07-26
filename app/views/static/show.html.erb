@@ -1,28 +1,128 @@
-<div>
-  <h1 class="text-green-500 font-bold text-4xl">Covid#show</h1>
-  <p>Find me in app/views/covid/show.html.erb</p>
-  <%@country.each do |c|%>
-    <h2><%=c['name']['official']%></h2>
-    <h3>Population: <%=c['population']%></h3>
-    <h3>Capital: <%=c['capital'][0]%></h3>
-    <h3>Area: <%=c['area']%></h3>
-    <h3>Continent: <%=c['continents'][0]%></h3>
-    <h3><%= link_to 'Map', c['maps']['googleMaps'], target: :_blank %></h3>
-    <div class="max-w-sm rounded-lg border shadow-md bg-gray-800 border-gray-700">
-      <img class="rounded-t-lg" src='<%=c['flags']['svg']%>'/>
-      <img class="rounded-t-lg" src='<%=c['coatOfArms']['svg']%>'/>
+<div class="grid grid-flow-col">
+  <div>
+    <%@country.each do |c|%>
+      <div class="flex flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full">
+                <thead class="border-b bg-cyan-400">
+                  <tr class="text-white">
+                    <th class="text-xl font-medium px-6 py-4 text-left">
+                      <%=c['name']['official']%>
+                    </th>
+                    <th class="text-sm font-medium px-6 py-4 text-left">
+                      <img class="block h-10 rounded-lg" src='<%=c['flags']['svg']%>'/>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Population
+                    </td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <%=c['population']%>
+                    </td>
+                  </tr>
+                  <tr class="border-b">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Capital
+                    </td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <%=c['capital'][0]%>
+                    </td>
+                  </tr>
+                  <tr class="border-b">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Area
+                    </td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <%=c['area']%>
+                    </td>
+                  </tr>
+                  <tr class="border-b">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Continent
+                    </td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <%=c['continents'][0]%>
+                    </td>
+                  </tr>
+                  <tr class="border-b">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      See me on the map!
+                    </td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <%= link_to 'click me', c['maps']['googleMaps'], target: :_blank %>
+                    </td>
+                  </tr>
+                  <% if @covid_data.empty? %>
+                    <tr class="text-white">
+                      <th class="text-sm font-medium px-6 py-4 text-left">
+                        <%=c['name']['official']%>
+                      </th>
+                      <th class="text-sm font-medium px-6 py-4 text-left">
+                      </th>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        Sorry! Currently there is no available data from the API.
+                      </td>
+                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        ---
+                      </td>
+                    </tr>
+                  <%else%>
+                    <tr class="border-b">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        Covid cases as of: <%= @covid_data[-1]['Date'].chomp("T00:00:00Z")%>
+                      </td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        Confirmed
+                      </td>
+                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <%= @covid_data[-1]['Confirmed']%>
+                      </td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        Deaths
+                      </td>
+                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <%= @covid_data[-1]['Deaths']%>
+                      </td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        Recovered
+                      </td>
+                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <%= @covid_data[-1]['Recovered']%>
+                      </td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        Active
+                      </td>
+                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <%= @covid_data[-1]['Active']%>
+                      </td>
+                    </tr>
+                  <%end%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <%end%>
-  <% if @covid_data.empty? %>
-    <h1>Sorry! Currently there is no available data from the API.</h1>
-  <%else%>
-    <h2>Covid Data</h2>
-    <h2><%= @covid_data[-1]['Date'].chomp("T00:00:00Z")%></h2>
-    <ul>
-      <li>Confirmed: <%= @covid_data[-1]['Confirmed']%></li>
-      <li>Deaths: <%= @covid_data[-1]['Deaths']%></li>
-      <li>Recovered: <%= @covid_data[-1]['Recovered']%></li>
-      <li>Active: <%= @covid_data[-1]['Active']%></li>
-    </ul>
+    <div>
+      <div class="max-w-sm rounded-lg border shadow-md bg-gray-800 border-gray-700">
+        <img class="rounded-t-lg" src='<%=c['coatOfArms']['svg']%>'/>
+      </div>
+    </div>
   <%end%>
 </div>

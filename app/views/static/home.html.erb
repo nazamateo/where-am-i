@@ -1,24 +1,23 @@
-<h1 class="text-3xl font-bold underline text-red-500">Static#home</h1>
-<p>Find me in app/views/static/home.html.erb</p>
 <div>
-  <h1 class="text-green-500 font-bold text-4xl">Covid#index</h1>
-  <p>Find me in app/views/covid/index.html.erb</p>
-  <h1>Hello stranger! <%=@random_advise['slip']['advice'].capitalize%></h1>
-  <h1>User IP <%=@location['ip']%></h1>
-  <h1>User Continent <%=@location['continent_name']%></h1>
-  <h1>User Country <%=@location['country_name']%></h1>
-  <h1>User Region <%=@location['region_name']%></h1>
-  <h1>User City <%=@location['city']%></h1>
-  <h1>User Zipcode <%=@location['zip']%></h1>
+  <div class="w-1/2">
+    <div class="px-4 py-4 text-purple-800 bg-purple-300 rounded flex gap-2 items-center " role="alert">
+      Hello Stranger!
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+  </div>
   <%@countries.each do |c|%>
-    <h3>Continent: <%=c['continents'][0]%></h3>
     <div class="max-w-sm rounded-lg border shadow-md bg-gray-800 border-gray-700">
-      <img class="rounded-t-lg" src='<%=c['flags']['svg']%>'/>
-      <div class="p-5">
+      <img class="rounded-t-lg " src='<%=c['flags']['svg']%>'/>
+      <div class="p-2">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
-          <%= link_to c['name']['common'], static_show_path(c['name']['common']) %>
+          <%= link_to c['name']['common'], static_path(c['name']['common']) %>
         </h5>
+        <h6 class="mb-2 text-xl tracking-tight text-white">
+          <%= link_to 'View on google maps', c['maps']['googleMaps'], target: :_blank %></h6>
       </div>
     </div>
   <%end%>
+</div>
 </div>

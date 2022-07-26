@@ -17,9 +17,12 @@
       Visit the guide for more information: https://vite-ruby.netlify.app/guide/rails
     -->
   </head>
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+  <body class="overflow-x-hidden">
+    <div class='h-screen'>
+      <%= render 'layouts/navbar' %>
+      <main class="container mx-auto mt-10 px-5 flex">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>

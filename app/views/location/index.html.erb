@@ -1,0 +1,20 @@
+<div>
+  <div class="p-5 bg-purple-100">
+    <h3 class="text-purple-300 mb-4 text-sm font-bold ">
+      Quote of the day
+    </h3>
+    <div class="max-w-4xl p-4 text-gray-800 bg-white rounded-lg shadow">
+      <div class="mb-2">
+        <div class="h-3 text-3xl text-left text-gray-600">“</div>
+        <p class="px-4 text-sm text-center text-gray-600 ">
+          <%=@random_advise['slip']['advice'].capitalize%>
+        </p>
+        <div class="h-3 text-3xl text-right text-gray-600">”</div>
+      </div>
+    </div>
+  </div>
+  <h1>You are in <%=@location['continent_name']%>, specifically in the <%=@location['country_name']%>!</h1>
+  <h2>To spice things up, I also know that you are in <%=@location['region_name']%> at <%=@location['city']%></h2>
+  <h3>Cool right?! </h3>
+  <div class="grid grid-cols-5 gap-4" w-screen>
+  </div>

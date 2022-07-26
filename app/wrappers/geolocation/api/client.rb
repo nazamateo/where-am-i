@@ -4,7 +4,8 @@ module Geolocation
             BASE_URL = 'http://api.ipstack.com/'.freeze
 
             def get_location
-                send_request(:get, "check", :access_key => '126dc8a499f871199fd9cd50aeb3aa8a')
+                send_request(:get, "check", :access_key => 'e82191a13933c5981794dd2793fdb4cd')
+                # 
             end
 
             def send_request(http_method, path_to_resource, params={})
